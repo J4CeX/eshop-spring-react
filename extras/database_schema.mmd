@@ -1,0 +1,64 @@
+erDiagram
+    Users ||--o| Personal_profiles: has
+    Users ||--o| Business_profiles: has
+
+    Users ||--o{ Products: sells
+    Users ||--o{ Orders: "buys (as buyer)"
+    Users ||--o{ Orders: "sells (as seller)"
+    Products ||--o{ Order_products: "included in"
+    Orders ||--|{ Order_products: contains
+
+    Users {
+        INTEGER user_id PK
+        VARCHAR *email "UQ"
+        VARCHAR *password_hash
+        VARCHAR *user_role
+        VARCHAR *account_type
+        TIMESTAMPTZ *created_at
+    }
+
+    Personal_profiles {
+        INTEGER user_id PK "FK to Users"
+        VARCHAR *first_name
+        VARCHAR *last_name
+        DATE *date_of_birth
+    }
+
+    Business_profiles {
+        INTEGER user_id PK "FK to Users"
+        VARCHAR *company_name
+        CHAR(10) *nip
+        VARCHAR *address
+    }
+
+    Products {
+        INTEGER product_id PK
+        INTEGER seller_id FK "FK to Users"
+        VARCHAR *name
+        TEXT *description
+        NUMERIC *price
+        INTEGER *stock_quantity
+        TIMESTAMPTZ *created_at
+    }
+
+    Orders {
+        INTEGER order_id PK
+        INTEGER seller_id FK "FK to Users"
+        INTEGER buyer_id FK "FK to Users"
+        NUMERIC *amount
+        VARCHAR *status
+        VARCHAR *delivery_address
+        TIMESTAMPTZ *created_at
+
+        BOOLEAN *invoice_requested
+        VARCHAR invoice_company_name
+        CHAR(10) invoice_nip
+        VARCHAR invoice_address
+    }
+
+    Order_products {
+        INTEGER order_id FK "FK to Orders"
+        INTEGER product_id FK "FK to Products"
+        INTEGER *quantity
+        NUMERIC *price_at_purchase
+    }
