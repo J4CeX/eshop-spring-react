@@ -13,7 +13,8 @@ CREATE TABLE Users (
     account_type account_type NOT NULL DEFAULT 'PERSONAL',
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
-    CONSTRAINT email_format CHECK (email ~* '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$')
+    CONSTRAINT email_format CHECK (email ~* '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'),
+    CONSTRAINT password_hash_format CHECK (password_hash ~* '^[A-Fa-f0-9\s!@#$%^&*()-+]{64}$')
 );
 
 CREATE TABLE Personal_profiles (
