@@ -4,7 +4,6 @@ import com.eshop.backend.entities.enums.OrderStatus;
 import lombok.*;
 import jakarta.persistence.*;
 import java.time.ZonedDateTime;
-import java.math.BigDecimal;
 
 @Entity
 @Table(name = "orders")
@@ -26,8 +25,8 @@ public class Order {
     @JoinColumn(name = "buyer_id", nullable = false)
     private User buyer;
 
-    @Column(name = "amount", nullable = false, precision = 10, scale = 2)
-    private BigDecimal amount;
+    @Column(name = "amount", nullable = false)
+    private Integer amount;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "order_status", nullable = false)
