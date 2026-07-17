@@ -37,6 +37,6 @@ public class User {
 
     @PrePersist
     protected void onCreate() {
-        createdAt = ZonedDateTime.now();
+        this.createdAt = ZonedDateTime.now();
     }
 }
