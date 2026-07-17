@@ -22,7 +22,7 @@ public class BusinessProfile {
     @Column(name = "company_name", nullable = false)
     private String companyName;
 
-    @Column(name = "nip", nullable = false, unique = true)
+    @Column(name = "nip", nullable = false, unique = true, length = 10)
     private String nip;
 
     @Column(name = "address", nullable = false)

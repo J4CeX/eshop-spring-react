@@ -44,7 +44,7 @@ public class Order {
     @Column(name = "invoice_company_name")
     private String invoiceCompanyName;
 
-    @Column(name = "invoice_nip")
+    @Column(name = "invoice_nip", length = 10)
     private String invoiceNip;
 
     @Column(name = "invoice_address")

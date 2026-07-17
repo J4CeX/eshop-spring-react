@@ -35,7 +35,7 @@ CREATE TABLE Personal_profiles (
 CREATE TABLE Business_profiles (
     user_id INTEGER PRIMARY KEY,
     company_name VARCHAR NOT NULL,
-    nip CHAR(10) NOT NULL,
+    nip VARCHAR(10) NOT NULL,
     address VARCHAR NOT NULL,
 
     CONSTRAINT company_name_format CHECK (company_name ~* '^[A-Za-z0-9żźćńółęąśŻŹĆĄŚĘŁÓŃ\s.,\-"]+$'),
@@ -63,12 +63,12 @@ CREATE TABLE Orders (
     seller_id INTEGER NOT NULL,
     buyer_id INTEGER NOT NULL,
     amount INTEGER NOT NULL,
-    status order_status NOT NULL DEFAULT 'PENDING',
+    order_status order_status NOT NULL DEFAULT 'PENDING',
     delivery_address VARCHAR NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     invoice_requested BOOLEAN NOT NULL DEFAULT FALSE,
     invoice_company_name VARCHAR,
-    invoice_nip CHAR(10),
+    invoice_nip VARCHAR(10),
     invoice_address VARCHAR,
 
     CONSTRAINT amount_value CHECK (amount >= 0),
